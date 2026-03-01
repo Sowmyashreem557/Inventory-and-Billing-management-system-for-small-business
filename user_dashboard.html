@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>user Dashboard | InventoryPro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color:rgb(222, 219, 227); /* Changed primary color to a bold red */
+            --secondary-color:rgb(242, 245, 249); /* Darker, cooler secondary color */
+            --light-color: #f4f6f7; /* Light gray for a softer background */
+            --success-color:rgb(53, 170, 135); /* Green for success messages */
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif; /* Modern, clean font */
+        }
+        
+        body {
+            background-color:rgb(28, 90, 65); /* Softer background for body */
+            color:rgb(225, 227, 221); /* Darker text for improved readability */
+            line-height: 1.6;
+            top: 0;
+            left: 0; /* move navbar to the right */
+            margin-left:5px;
+        }
+        
+        .navbar {
+            background-image:url("https://png.pngtree.com/background/20230618/original/pngtree-green-line-chart-in-3d-with-a-blurred-backdrop-picture-image_3755715.jpg");
+            background-size: cover;
+            color: orange;
+            padding: 2rem 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            width: 180px;
+            height: 120vh;
+            position: fixed;
+            top: 0;
+            right: 0; /* move navbar to the right */
+            box-shadow: -2px 0 10px rgba(191, 56, 22, 0.61); /* reverse shadow direction */
+            display:flex;
+           
+            
+        }
+        
+        .logo {
+            font-size: 1.3rem; /* Slightly larger logo text */
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            color: white;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-right: 1rem;
+            display:flex;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+        }
+        
+        .nav-links a.active {
+            color: var(--primary-color);
+        }
+        
+        .nav-links i {
+            margin-right: 8px;
+            font-size: 1.2rem; /* Larger icons for better visibility */
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 1.8rem; /* Larger hamburger icon for mobile */
+        }
+        
+        .container {
+            max-width: 1300px;
+            margin-right: 2rem;
+            padding: 0 2rem;
+        }
+        
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        
+        .page-header h1 {
+            font-size: 2.2rem; /* Slightly larger header */
+            color: white;
+        }
+        
+        .welcome-message {
+            background-color: gray;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 20px 20px rgba(15, 15, 2, 0.1);
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            margin-left: 5 rem;
+            width:1600px;
+        }
+        
+        .welcome-message i {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-right: 1rem;
+           
+        }
+        
+        .welcome-text h2 {
+            margin-bottom: 0.5rem;
+            margin-left: 5 rem;
+            color: var(--secondary-color);
+        }
+        
+        .stats-cards {
+            background-color:white;
+            width:500px;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+            border-radius: 10px;
+        }
+        
+        .stat-card1 {
+            background-image:url("https://static.vecteezy.com/system/resources/thumbnails/049/751/963/small/abstract-geometric-colorful-green-square-theme-overlap-background-for-graphic-design-vector.jpg");
+            border-radius: 10px;
+            padding: 1rem;
+            box-shadow: 0 15px 15px rgba(0, 0, 0, 0.1);
+            background-size: cover;
+            margin-top:2rem;
+        }
+        .stat-card2 {
+            background-image:url("https://images.rawpixel.com/image_800/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvdjk2MC1uaW5nLTE5LWcteF8xLmpwZw.jpg");
+            border-radius: 10px;
+            padding: 1rem;
+            box-shadow: 0 15px 15px rgba(0, 0, 0, 0.1);
+            background-size: cover;
+        }
+        .stat-card3 {
+            background-image:url("https://cdn.vectorstock.com/i/1000v/25/77/blue-background-aqua-texture-gradient-light-blur-vector-23032577.jpg");
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            background-size: cover;
+            width:500px;
+            margin-bottom:2rem;
+        }
+        
+        .stat-card h3 {
+            font-size: 1.3rem;
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-card p {
+            font-size: 1.9rem; /* Slightly larger for readability */
+            font-weight: 600;
+        }
+        
+        .tasks-table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .tasks-table th,
+        .tasks-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .tasks-table th {
+            background-color: var(--light-color);
+            color: var(--secondary-color);
+            font-weight: 600;
+        }
+        
+        .status {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        
+        .status-pending {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+        
+        .status-in-progress {
+            background-color: #cce5ff;
+            color: #004085;
+        }
+        
+        .status-completed {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        
+        .btn {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem; /* Slightly larger button text */
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .btn:hover {
+            background-color: #c0392b; /* Darker shade on hover */
+        }
+        
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+        
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                background-color: var(--secondary-color);
+                flex-direction: column;
+                align-items: center;
+                padding: 2rem 0;
+                display:flex;
+            }
+        
+            .nav-links.active {
+                left: 0;
+            }
+        
+            .nav-links li {
+                margin: 1rem 0;
+            }
+        }
+        
+        /* Inventory Table */
+        .inventory-table {
+            width: 88%;
+            border-collapse: collapse;
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            animation: fadeInUp 0.5s ease;
+        }
+        
+        .inventory-table th,
+        .inventory-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .inventory-table th {
+            background-color: var(--light-color);
+            color: black;
+            font-weight: 600;
+        }
+        
+        .inventory-table tr:hover {
+            background-color: #f9f9f9;
+        }
+        
+        .item-image {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+        
+        .item-name {
+            display: flex;
+            align-items: center;
+        }
+        
+        .stock-status {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        
+        .status-in-stock {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        
+        .status-low-stock {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+        
+        .status-out-of-stock {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="navbar">
+          <a href="/profile">
+            <img src="https://www.w3schools.com/howto/img_avatar.png"
+                 alt="Profile"
+                 style="width: 80px; height: 80px; border-radius: 50%; margin-bottom: 2rem;">
+          </a>
+      
+          <ul class="nav-links">
+            <li><a href="/user_dashboard" class="active" >Dashboard</a></li></ul>
+        <ul class="nav-links">
+            <li><a href="/" style="color: white;">Home</a></li></ul>
+        <ul class="nav-links">
+            <li><a href="/user_login" style="color: white;">User</a></li></ul>
+        <ul class="nav-links">
+            <li><a href="/admin_login" style="color: white;">Admin</a></li></ul>
+        <ul class="nav-links">
+            <li><a href="/logout" style="color: white;"><i class="fas fa-sign-out-alt"></i> Logout</a></li></ul>
+          </ul>
+        </div>
+      
+        <div class="hamburger">
+          <i class="fas fa-bars"></i>
+        </div>
+      </nav>      
+
+    <div class="container">
+        <div class="page-header">
+            <div class="logo">
+                <i class="fas fa-chart-line"></i>
+                <span>Inventory & Billing Management</span>
+            </div>
+            <h1 style="margin-left:20rem;">User Dashboard</h1>
+            <div style="margin-right:5rem;">Today: <strong>{{formatted_date}}</strong></div>
+
+        </div>
+        
+        <div class="welcome-message">
+            <i class="fas fa-user-circle"></i>
+            <div class="welcome-text">
+                <h2>Welcome back, {{email[0]}}{{email[1]}}{{email[2]}}{{email[3]}}{{email[4]}}{{email[5]}}</h2>
+            </div>
+        </div>
+        <div >
+             <ul style="background-color:orange; border-radius:1rem; width:122px; margin-left:41rem; font-size:28px;"><a href="/user_inventory" style="color: Black;">Inventory</a></ul>
+             <ul style="margin-left:35rem;">Click on the link to acces the Inventory table</ul>
+        </div>
+        
+        <div class="stats-cards">
+            <div class="stat-card1">
+                <h3>My Total orders</h3>
+                <p>{{total_orders}}</p>
+            </div>
+        </div>
+        <div class="stats-cards">
+            <div class="stat-card2">
+                <h3>Total items</h3>
+                <p>{{total_items}}</p>
+            </div>
+        </div>
+        <div class="stat-cards">
+            <div class="stat-card3">
+                <h3>Total Users</h3>
+                <p>{{total_users}}</p>
+            </div>
+        </div>
+        </div>
+        
+        <h2 style="margin-bottom: 1rem;"> My Orders</h2>
+        <table class="inventory-table">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Category</th>
+                    <th>Quantity</th>
+                    <th>Location</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in result %}
+                <tr>
+                    <td style="display: flex;flex-direction: column;justify-content: center;align-items: center;">
+                            <img src="data:image/jpg;base64,{{row[-2]}}" class="item-image">
+                            {{row[1]}}
+                    </td>
+                    <td>{{row[2]}}</td>
+                    <td>1</td>
+                    <td>{{row[4]}}</td>
+                    <td>{{row[6]}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
