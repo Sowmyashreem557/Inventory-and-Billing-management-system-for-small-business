@@ -1,1 +1,0 @@
-# Inventory-and-Billing-management-system-for-small-business
